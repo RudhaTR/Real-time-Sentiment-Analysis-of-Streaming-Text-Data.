@@ -7,7 +7,7 @@ import queue
 
 class DataSource:
 
-    def __init__(self,shared_queue,target_language="en",data_file_path="../data/StreamData.csv"):
+    def __init__(self,shared_queue,target_language="en",data_file_path="./data/StreamData.csv"):
 
         self.stream_queue = shared_queue
         self.data_file_path = data_file_path
