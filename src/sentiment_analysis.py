@@ -32,7 +32,7 @@ class SentimentAnalyzer:
         return processed_text
     
 
-    def analyze_stream(self, text):
+    def analyze_stream(self):
 
 
         if self.analyzer is None:
@@ -63,7 +63,7 @@ class SentimentAnalyzer:
             }
 
             try:
-                
+
                 self.output_queue.put(output_dict, block=False)
             except queue.Full:
                 self.drop_counter += 1
