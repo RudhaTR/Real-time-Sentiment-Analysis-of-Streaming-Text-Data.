@@ -8,16 +8,15 @@ class DataAggregator:
     def __init__(self, input_queue, alpha=0.2, max_recent_comments=10):
         self.input_queue = input_queue
         self.alpha = alpha
-        self.value = 0
+        self.ema_score = 0
         self._is_first = True
         self.no_positive = 0
         self.no_negative = 0    
         self.no_neutral = 0
-        self.drop_counter = 0
+        self.total_processed = 0
         self.max_recent_comments = max_recent_comments
         self.recent_comments = deque(maxlen=max_recent_comments)
         self.lock = threading.Lock()
-        self.valueLock = threading.Lock()
 
 
 
@@ -35,12 +34,12 @@ class DataAggregator:
 
     def update_ema(self,comment_score):
 
-        with self.valueLock:
+        with self.lock:
             if self._is_first:
-                self.value = comment_score
+                self.ema_score = comment_score
                 self._is_first = False
             else:
-                self.value = self.alpha * comment_score + (1 - self.alpha) * self.value
+                self.ema_score = self.alpha * comment_score + (1 - self.alpha) * self.ema_score
 
 
 
@@ -71,15 +70,40 @@ class DataAggregator:
                 elif(sentiment_analysis_label == "NEU"):
                     self.no_neutral += 1
 
-            if(self.recent_comments.full()):
-                self.recent_comments.popleft()
-            self.recent_comments.append(comment_score)
-            
+                output_dict = {
+                    'text': comment,
+                    "comment_score": comment_score,
+                    "label": sentiment_analysis_label
+                    }
 
+                self.recent_comments.append(output_dict)
+            
+            self.total_processed += 1
             self.input_queue.task_done()
         
-        self.input_queuetask_done()
+        self.input_queue.task_done()
         print("Data aggregation completed.")
+
+    def get_ema_score(self):
+            with self.lock:
+                return self.ema_score
+            
+    def get_recent_comments(self):
+            with self.lock:
+                return list(self.recent_comments)
+            
+    def get_sentiment_counts(self):
+            with self.lock:
+                return {
+                    "POS": self.no_positive,
+                    "NEG": self.no_negative,
+                    "NEU": self.no_neutral
+                }
+            
+    def get_total_processed(self):
+            with self.lock:
+                return self.total_processed
+            
 
        
         
