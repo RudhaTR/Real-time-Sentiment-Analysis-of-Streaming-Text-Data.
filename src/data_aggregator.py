@@ -14,7 +14,6 @@ class DataAggregator:
         self.no_negative = 0    
         self.no_neutral = 0
         self.total_processed = 0
-        self.max_recent_comments = max_recent_comments
         self.recent_comments = deque(maxlen=max_recent_comments)
         self.lock = threading.Lock()
 
@@ -33,8 +32,6 @@ class DataAggregator:
         return scaled_score
 
     def update_ema(self,comment_score):
-
-        with self.lock:
             if self._is_first:
                 self.ema_score = comment_score
                 self._is_first = False
@@ -46,42 +43,48 @@ class DataAggregator:
     def process_analysis_stream(self):
 
         while True:
-
-            input_dict = self.input_queue.get()
-
-            if input_dict is None:
-                print("No more data to process.")
-                break
-
-            comment = input_dict['Comment']
-            original_sentiment = input_dict['Original_Sentiment']
-            sentiment_analysis_probability = input_dict['Sentiment_Analysis_Probability']
-            sentiment_analysis_label = input_dict['Sentiment_Analysis_Label']
-
-           
-            comment_score = self.calculate_comment_score(sentiment_analysis_probability, sentiment_analysis_label)
-
-            with self.lock:
-                self.update_ema(comment_score)
-                if(sentiment_analysis_label == "POS"):
-                    self.no_positive += 1
-                elif(sentiment_analysis_label == "NEG"):
-                    self.no_negative += 1
-                elif(sentiment_analysis_label == "NEU"):
-                    self.no_neutral += 1
-
-                output_dict = {
-                    'text': comment,
-                    "comment_score": comment_score,
-                    "label": sentiment_analysis_label
-                    }
-
-                self.recent_comments.append(output_dict)
+            try:
+                input_dict = self.input_queue.get()
             
-            self.total_processed += 1
-            self.input_queue.task_done()
+                if input_dict is None:
+                    print("No more data to process.")
+                    break
+
+                comment = input_dict['Comment']
+                original_sentiment = input_dict['Original_Sentiment']
+                sentiment_analysis_probability = input_dict['Sentiment_Analysis_Probability']
+                sentiment_analysis_label = input_dict['Sentiment_Analysis_Label']
+
+            
+                comment_score = self.calculate_comment_score(sentiment_analysis_probability)
+
+                with self.lock:
+                    self.update_ema(comment_score)
+                    
+                    if(sentiment_analysis_label == "POS"):
+                        self.no_positive += 1
+                    elif(sentiment_analysis_label == "NEG"):
+                        self.no_negative += 1
+                    elif(sentiment_analysis_label == "NEU"):
+                        self.no_neutral += 1
+
+                    output_dict = {
+                        'text': comment,
+                        "comment_score": comment_score,
+                        "label": sentiment_analysis_label
+                        }
+
+                    self.recent_comments.append(output_dict)
+                
+                self.total_processed += 1
+
+            except Exception as e:
+                print(f"Error processing data in data aggregator: {e}")
+                continue
+            finally:
+                self.input_queue.task_done()
         
-        self.input_queue.task_done()
+      
         print("Data aggregation completed.")
 
     def get_ema_score(self):
