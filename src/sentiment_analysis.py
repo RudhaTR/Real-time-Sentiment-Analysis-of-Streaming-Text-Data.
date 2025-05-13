@@ -41,36 +41,42 @@ class SentimentAnalyzer:
             return 
         
         while(True):
-            input_dict = self.input_queue.get()
-
-            if input_dict is None:
-                print("No more data to process.")
-                break
             
-            comment = input_dict['Comment']
-            sentiment = input_dict['Sentiment']
-            preprocessed_comment = self.preprocess(comment)
-            sentiment_analysis = self.analyzer.predict(preprocessed_comment)
-
-            sentiment_analysis_probability = sentiment_analysis.probas
-            sentiment_analysis_label = sentiment_analysis.output
-
-            output_dict = {
-                'Comment': comment,
-                'Original_Sentiment': sentiment,
-                'Sentiment_Analysis_Probability': sentiment_analysis_probability,
-                'Sentiment_Analysis_Label': sentiment_analysis_label
-            }
-
             try:
+                input_dict = self.input_queue.get()
+                
+                if input_dict is None:
+                    print("No more data to process.")
+                    break
+                
+                comment = input_dict['Comment']
+                sentiment = input_dict['Sentiment']
+                preprocessed_comment = self.preprocess(comment)
+                sentiment_analysis = self.analyzer.predict(preprocessed_comment)
 
-                self.output_queue.put(output_dict, block=False)
-            except queue.Full:
-                self.drop_counter += 1
+                sentiment_analysis_probability = sentiment_analysis.probas
+                sentiment_analysis_label = sentiment_analysis.output
 
-            self.input_queue.task_done()
+                output_dict = {
+                    'Comment': comment,
+                    'Original_Sentiment': sentiment,
+                    'Sentiment_Analysis_Probability': sentiment_analysis_probability,
+                    'Sentiment_Analysis_Label': sentiment_analysis_label
+                }
 
-        self.input_queue.task_done()
+                try:
+                    self.output_queue.put(output_dict, block=False)
+                except queue.Full:
+                    self.drop_counter += 1
+
+            except Exception as e:
+                print(f"Error processing input data in sentiment analyzer: {e}")
+            finally:
+                self.input_queue.task_done()
+
+        
         self.output_queue.put(None)
         print(f"Sentiment analysis completed. Total items Dropped at output queue: {self.drop_counter}")
+        
+        
 
