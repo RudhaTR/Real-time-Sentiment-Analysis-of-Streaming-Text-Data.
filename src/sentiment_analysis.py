@@ -72,5 +72,5 @@ class SentimentAnalyzer:
 
         self.input_queue.task_done()
         self.output_queue.put(None)
-        print(f"Sentiment analysis completed. Drop counter: {self.drop_counter}")
+        print(f"Sentiment analysis completed. Total items Dropped at output queue: {self.drop_counter}")
 

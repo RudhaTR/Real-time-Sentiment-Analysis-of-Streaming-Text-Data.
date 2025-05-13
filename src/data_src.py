@@ -72,7 +72,7 @@ class DataSource:
             delay = random.uniform(mindelay, maxdelay)
             time.sleep(delay)
 
-        print(f"Data streaming completed. Total items dropped: {self.drop_counter}")
+        print(f"Data streaming completed. Total items dropped at input queue: {self.drop_counter}")
         self.stream_queue.put(None)
         
         
