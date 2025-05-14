@@ -9,7 +9,7 @@ body {
     display: flex;
     flex-direction: column; /* Arrange header, main, footer vertically */
     min-height: 100vh; /* Ensure body takes at least full viewport height */
-    /* Removed height: 100vh; to allow flex-grow to manage height */
+    height: 100vh; /* Explicitly set height to prevent growth */
     overflow: hidden; /* Hide any overflow on the body */
 }
 
@@ -36,6 +36,7 @@ h1, h2 {
     border-bottom: 3px solid #a8dadc; /* Thicker, matching border */
     padding-bottom: 0.8rem; /* More padding below border from stats */
     margin-bottom: 1.5rem; /* Add some space below the border */
+    flex-shrink: 0; /* Prevent heading from shrinking */
 }
 
 
@@ -51,6 +52,7 @@ h1, h2 {
     justify-content: space-between; /* Distribute space between items */
     /* Removed overflow-y: auto; from container */
     min-height: 0; /* Added to help flexbox calculate height correctly */
+    overflow: hidden; /* Hide any overflow from the container itself */
 }
 
 /* Column Styling */
@@ -64,12 +66,13 @@ h1, h2 {
     /* Ensure columns don't shrink below content and handle their own overflow */
     flex-shrink: 0;
     min-height: 0; /* Allow flex items to shrink below their content size */
-    overflow-y: auto; /* Add scrollbar to individual columns if content overflows */
+    /* Removed overflow-y: auto; from column classes */
 }
 
 .comments-column {
     flex: 2; /* Increased flex to make comments column wider */
     min-width: 300px; /* Minimum width before wrapping */
+    /* Add overflow-y: auto here if you want the entire column to scroll */
 }
 
 .ema-column {
@@ -78,11 +81,13 @@ h1, h2 {
     text-align: center;
     align-items: center;
     justify-content: center;
+    overflow-y: auto; /* Add scrollbar to EMA column if content overflows */
 }
 
 .stats-column {
     flex: 2; /* Adjusted flex to match comments column */
     min-width: 200px; /* Minimum width */
+    overflow-y: auto; /* Add scrollbar to Stats column if content overflows */
 }
 
 
@@ -151,23 +156,24 @@ h1, h2 {
     flex-direction: column;
     gap: 20px; /* Increased space between comments */
     flex-grow: 1; /* Allow the list to grow within comments-column */
-    /* Removed overflow-y: auto; from comments-list */
+    overflow-y: auto; /* Add scrollbar to the COMMENTS LIST */
     /* max-height: 600px; /* Removed max-height to let flexbox manage height */
     padding-right: 10px; /* Add padding for scrollbar */
+    height: 0; /* Set a base height to allow flex-grow to work with overflow */
 }
 
 /* Custom scrollbar for comments list (optional, for cartoonish feel) */
-/* Apply scrollbar styling to the column itself */
-.comments-column::-webkit-scrollbar {
+/* Apply scrollbar styling to the comments-list itself */
+.comments-list::-webkit-scrollbar {
   width: 12px;
 }
 
-.comments-column::-webkit-scrollbar-track {
+.comments-list::-webkit-scrollbar-track {
   background: #f1faee; /* Match column background */
   border-radius: 10px;
 }
 
-.comments-column::-webkit-scrollbar-thumb {
+.comments-list::-webkit-scrollbar-thumb {
   background-color: #457b9d; /* Match header blue */
   border-radius: 10px;
   border: 3px solid #f1faee; /* Add border matching column background */
