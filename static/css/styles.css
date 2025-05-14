@@ -501,10 +501,10 @@ footer a:hover {
 header {
      font-family: 'Quicksand', sans-serif;
     background: linear-gradient(135deg,
-        #f4e9d8 0%,   /* light sandstone */
-        #e1c699 100%  /* deeper sandy tan */
+        #f4e9d8 0%,   
+        #e1c699 100%  
     );
-    color: #2d3047;   /* deep‑navy for legibility */
+    color: #2d3047;   
     padding: 0.5rem 0;
     text-align: center;
     box-shadow: 0 4px 20px rgba(45, 48, 71, 0.1);
@@ -514,10 +514,10 @@ header {
 
 footer {
     background: linear-gradient(135deg,
-        #8b6b4f 0%,   /* warm bark brown */
-        #5c3d2e 100%  /* rich dark wood */
+        #8b6b4f 0%,   
+        #5c3d2e 100%  
     );
-    color: #ffffff;  /* crisp white text */
+    color: #ffffff;  
     text-align: center;
     padding: 0.5rem 0;
     box-shadow: 0 -4px 20px rgba(45, 48, 71, 0.1);
@@ -576,7 +576,7 @@ h2::after {
     margin-top: 0;
     padding-bottom: 0.8rem;
     margin-bottom: 1.5rem;
-    border-bottom: 2px solid #f0f1f5;
+    border-bottom: 2px solid #e1c699;
     flex-shrink: 0;
 }
 
@@ -586,11 +586,11 @@ h2::after {
 .semi-circle-fill {
     background: linear-gradient(
         to right,
-        #ff4d4f 0%,   /* vivid red at 0 */
-        #ffa94d 25%,  /* bright coral-orange */
-        #ffe66d 50%,  /* sunny yellow */
-        #9ae66e 75%,  /* fresh spring green */
-        #2ecc71 100%  /* lush emerald at 100 */
+        #ff4d4f 0%,   
+        #ffa94d 25%,  
+        #ffe66d 50%,  
+        #9ae66e 75%,  
+        #2ecc71 100%  
     );
 }
 
