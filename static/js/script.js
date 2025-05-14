@@ -32,23 +32,25 @@ async function fetchSentimentData() {
 }
 
 // Function to update the EMA semi-circle gauge
-function updateEmaGauge(emaScore) {
-    // Ensure score is between 0 and 100
-    const clampedScore = Math.max(0, Math.min(100, emaScore));
-
-    // Update the text display
+function updateEmaGauge(clampedScore) {
     emaScoreText.textContent = clampedScore.toFixed(1); // Display with 1 decimal place
 
-    // Calculate the rotation angle for the semi-circle fill
-    // 0% score is -180deg rotation (pointing left)
-    // 100% score is 0deg rotation (pointing up)
-    // The range is 180 degrees.
-    const rotation = -180 + (clampedScore / 100) * 180;
-
-    // Apply the rotation to the semi-circle fill element
-    semiCircleFill.style.transform = `rotate(${rotation}deg)`;
-
-    // The color gradient is handled by the CSS background and the rotation
+    // Calculate the percentage to fill (0-100%)
+    const fillPercentage = clampedScore;
+    
+    // Create a clip path that fills from left to right based on the score
+    // This creates a polygon that shows only a portion of the gradient
+    // The polygon coordinates are:
+    // (0,0) = top-left corner
+    // (fillPercentage%, 0) = top edge, depending on score
+    // (fillPercentage%, 100%) = bottom edge, depending on score
+    // (0, 100%) = bottom-left corner
+    
+    const clipPath = `polygon(0 0, ${fillPercentage}% 0, ${fillPercentage}% 100%, 0 100%)`;
+    
+    // Apply the clip path to the semi-circle fill element
+    semiCircleFill.style.clipPath = clipPath;
+    semiCircleFill.style.webkitClipPath = clipPath;
 }
 
 // Function to update the sentiment counts and total processed
