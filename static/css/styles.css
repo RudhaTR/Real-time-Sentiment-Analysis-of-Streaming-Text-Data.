@@ -422,3 +422,161 @@ footer a:hover {
         max-height: 300px;
     }
 }
+
+
+/* Override Colors, Fix Later*/
+
+/* Modern Color Scheme Updates - Brownish/Grayish Theme */
+
+/* General Body and Page Styling */
+body {
+    font-family: 'Segoe UI', 'Roboto', sans-serif; /* More modern font */
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f4; /* Light stone/gray background */
+    color: #292524; /* Dark brown text */
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(90deg, #44403c 0%, #292524 100%); /* Brown/gray gradient */
+    color: #f5f5f4;
+    padding: 0.75rem 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.12);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+h1, h2 {
+    color: #57534e; /* Warm gray heading color */
+    text-shadow: none; /* Remove text shadow for cleaner look */
+    font-weight: 600;
+}
+
+/* Column header styling */
+.comments-column h2,
+.ema-column h2,
+.stats-column h2 {
+    margin-top: 0;
+    border-bottom: 2px solid #78716c; /* Stone border */
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+    color: #44403c;
+}
+
+/* Column Styling - Updated backgrounds */
+.comments-column, .ema-column, .stats-column {
+    background-color: #faf8f6; /* Very light beige background */
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Softer shadow */
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    min-height: 0;
+}
+
+/* Footer Styling */
+footer {
+    margin-top: auto;
+    background: linear-gradient(90deg, #44403c 0%, #292524 100%); /* Match header gradient */
+    color: #f5f5f4;
+    text-align: center;
+    padding: 0.5rem 0;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.12);
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+
+footer a {
+    color: #d6d3d1; /* Light stone link color */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: #ffffff;
+}
+
+/* Update container background */
+.container {
+    background-color: #f5f5f4; /* Match body background */
+}
+
+/* Update EMA gauge colors - Keep vibrant for contrast */
+.semi-circle-fill {
+    background: linear-gradient(to right, 
+        #dc2626 0%, /* Deep red */
+        #ea580c 20%, /* Burnt orange */
+        #eab308 40%, /* Amber */
+        #84cc16 60%, /* Lime */
+        #22c55e 80%, /* Green */
+        #15803d 100% /* Forest green */
+    );
+}
+
+/* Update sentiment card colors */
+.sentiment-card.positive {
+    background-color: rgba(132, 204, 22, 0.1); /* Light lime background */
+    border-left: 4px solid #22c55e; /* Green border */
+}
+
+.sentiment-card.neutral {
+    background-color: rgba(234, 179, 8, 0.1); /* Light amber background */
+    border-left: 4px solid #ea580c; /* Burnt orange border */
+}
+
+.sentiment-card.negative {
+    background-color: rgba(220, 38, 38, 0.1); /* Light red background */
+    border-left: 4px solid #dc2626; /* Deep red border */
+}
+
+.sentiment-card.positive .sentiment-value {
+    color: #15803d; /* Forest green text */
+}
+
+.sentiment-card.neutral .sentiment-value {
+    color: #d97706; /* Amber text */
+}
+
+.sentiment-card.negative .sentiment-value {
+    color: #b91c1c; /* Darker red text */
+}
+
+/* Update total processed style */
+.total-processed-container {
+    border: 1px solid #78716c; /* Stone border */
+}
+
+#total-processed {
+    color: #44403c; /* Brown text */
+}
+
+/* Update comment item colors */
+.comment-item.positive {
+    background-color: #f0fdf4; /* Very light green */
+    border-left: 8px solid #22c55e; /* Green border */
+}
+
+.comment-item.neutral {
+    background-color: #fefce8; /* Very light amber */
+    border-left: 8px solid #ea580c; /* Burnt orange border */
+}
+
+.comment-item.negative {
+    background-color: #fef2f2; /* Very light red */
+    border-left: 8px solid #dc2626; /* Deep red border */
+    color: #292524; /* Dark text for better readability */
+}
+
+.comment-item.negative .comment-score {
+    color: #b91c1c; /* Darker red score for negative comments */
+}
