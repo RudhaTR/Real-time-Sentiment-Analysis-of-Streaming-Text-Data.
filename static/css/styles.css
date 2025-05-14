@@ -426,16 +426,12 @@ footer a:hover {
 
 /* Override Colors, Fix Later*/
 
-/* Modern Color Scheme Updates - Brownish/Grayish Theme */
-
-/* General Body and Page Styling */
-/* Modern Color Scheme Updates - Brownish/Yellow Theme */
-
-/* General Body and Page Styling */
+/*         Base Styling         */
+/* ============================= */
 body {
-    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-    background-color: #f8f9fa;
-    color: #2b2d42;
+    font-family: 'Poppins', sans-serif;
+    background: #f8f9ff;
+    color: #2d3047;
     margin: 0;
     padding: 0;
     line-height: 1.6;
@@ -446,158 +442,227 @@ body {
     overflow: hidden;
 }
 
-header {
-    background: linear-gradient(135deg, #6f4e37 0%, #d4a373 100%);
-    color: #fffcf8;
+/* Sentiment Color System */
+:root {
+    --positive: #2ecc71;
+    --neutral: #f1c40f;
+    --negative: #ff6b6b;
+    --accent: #ff9f43;
+}
+
+/* ============================= */
+/*    Summery Header & Footer    */
+/* ============================= */
+
+/*cyan shades*/
+/* header {
+     background: linear-gradient(135deg,
+        #e0f7fa 0%,   
+        #81ecec 100%  
+    );
+    color: #2d3047;   
     padding: 0.75rem 0;
     text-align: center;
-    box-shadow: 0 4px 20px rgba(111, 78, 55, 0.15);
+    box-shadow: 0 4px 20px rgba(45, 48, 71, 0.1);
     font-size: 0.9rem;
     flex-shrink: 0;
 }
 
-h1, h2 {
-    color: #6f4e37;
-    font-weight: 600;
-    text-shadow: none;
-}
-
-/* Column header styling */
-.comments-column h2,
-.ema-column h2,
-.stats-column h2 {
-    margin-top: 0;
-    border-bottom: 2px solid #e7c6a6;
-    padding-bottom: 0.8rem;
-    margin-bottom: 1.5rem;
-    flex-shrink: 0;
-    color: #6f4e37;
-}
-
-/* Column Styling */
-.comments-column, .ema-column, .stats-column {
-    background-color: #fffcf8;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(212, 163, 115, 0.1);
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    min-height: 0;
-    border: 1px solid #ede0d4;
-}
-
-/* Footer Styling */
 footer {
-    margin-top: auto;
-    background: linear-gradient(135deg, #6f4e37 0%, #d4a373 100%);
-    color: #fffcf8;
+    background: linear-gradient(135deg,
+        #81ecec 0%,   
+        #00b894 100%  
+    );
+    color: #ffffff;  
     text-align: center;
     padding: 0.5rem 0;
-    box-shadow: 0 -4px 20px rgba(111, 78, 55, 0.15);
+    box-shadow: 0 -4px 20px rgba(45, 48, 71, 0.1);
     font-size: 0.7rem;
     flex-shrink: 0;
 }
 
 footer a {
-    color: #e7c6a6;
-    text-decoration: none;
+    color: var(--accent);
     font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 footer a:hover {
-    text-decoration: underline;
-    color: #fffcf8;
+    color: #ffffff;
+    text-shadow: 0 0 6px rgba(255, 159, 67, 0.3);
+} */
+/* warm shades */
+header {
+    background: linear-gradient(135deg,
+        #f4e9d8 0%,   /* light sandstone */
+        #e1c699 100%  /* deeper sandy tan */
+    );
+    color: #2d3047;   /* deep‑navy for legibility */
+    padding: 0.75rem 0;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(45, 48, 71, 0.1);
+    font-size: 0.9rem;
+    flex-shrink: 0;
 }
 
-/* EMA Gauge */
+footer {
+    background: linear-gradient(135deg,
+        #8b6b4f 0%,   /* warm bark brown */
+        #5c3d2e 100%  /* rich dark wood */
+    );
+    color: #ffffff;  /* crisp white text */
+    text-align: center;
+    padding: 0.5rem 0;
+    box-shadow: 0 -4px 20px rgba(45, 48, 71, 0.1);
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+
+footer a {
+    color: var(--accent);
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+footer a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 6px rgba(255, 159, 67, 0.3);
+}
+
+/* ============================= */
+/*    Headings & Underlines      */
+/* ============================= */
+h1, h2 {
+    color: #2d3047;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+/* remove the decorative underline */
+h1::after,
+h2::after {
+    display: none;
+}
+
+/* ============================= */
+/*       Column Containers       */
+/* ============================= */
+.comments-column, .ema-column, .stats-column {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(255, 107, 107, 0.1);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    min-height: 0;
+    border: 1px solid #f0f1f5;
+}
+
+.comments-column h2,
+.ema-column h2,
+.stats-column h2 {
+    margin-top: 0;
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #f0f1f5;
+    flex-shrink: 0;
+}
+
+/* ============================= */
+/*       EMA Gauge Gradient      */
+/* ============================= */
 .semi-circle-fill {
-    background: linear-gradient(to right, 
-        #d4a373 0%,       /* Warm yellow-brown */
-        #e9c46a 33%,      /* Golden yellow */
-        #ffd166 66%,      /* Bright yellow */
-        #f4a261 100%     /* Orange-brown */
+    background: linear-gradient(
+        to right,
+        #ff4d4f 0%,   /* vivid red at 0 */
+        #ffa94d 25%,  /* bright coral-orange */
+        #ffe66d 50%,  /* sunny yellow */
+        #9ae66e 75%,  /* fresh spring green */
+        #2ecc71 100%  /* lush emerald at 100 */
     );
 }
 
-/* Sentiment Cards */
+/* ============================= */
+/*        Sentiment Cards        */
+/* ============================= */
 .sentiment-card {
-    background-color: rgba(255, 252, 248, 0.9) !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
     border-left: 5px solid;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.sentiment-card.positive {
-    border-color: #90be6d;
-}
+.sentiment-card.positive { border-color: var(--positive); }
+.sentiment-card.neutral  { border-color: var(--neutral);  }
+.sentiment-card.negative { border-color: var(--negative); }
 
-.sentiment-card.neutral {
-    border-color: #e9c46a;
-}
+.sentiment-card.positive .sentiment-value { color: var(--positive); }
+.sentiment-card.neutral  .sentiment-value { color: var(--neutral);  }
+.sentiment-card.negative .sentiment-value { color: var(--negative); }
 
-.sentiment-card.negative {
-    border-color: #d4a373;
-}
-
-.sentiment-card.positive .sentiment-value {
-    color: #588157;
-}
-
-.sentiment-card.neutral .sentiment-value {
-    color: #e9c46a;
-}
-
-.sentiment-card.negative .sentiment-value {
-    color: #bc6c25;
-}
-
-/* Total Processed */
+/* ============================= */
+/*      Total Processed Box      */
+/* ============================= */
 .total-processed-container {
-    border: 1px solid #e7c6a6;
+    border: 1px solid #f0f1f5;
 }
 
 #total-processed {
-    color: #6f4e37;
+    color: var(--accent);
+    font-size: 2.2rem;
+    text-shadow: 1px 1px 2px rgba(255, 159, 67, 0.2);
 }
 
-/* Comment Items */
+/* ============================= */
+/*         Comment Items         */
+/* ============================= */
 .comment-item {
-    background-color: #fffcf8 !important;
+    background-color: #ffffff !important;
     border-left: 6px solid;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.comment-item.positive {
-    border-color: #90be6d;
-}
-
-.comment-item.neutral {
-    border-color: #e9c46a;
-}
-
+.comment-item.positive { border-color: var(--positive); }
+.comment-item.neutral  { border-color: var(--neutral);  }
 .comment-item.negative {
-    border-color: #d4a373;
-    color: #2b2d42;
+    border-color: var(--negative);
+    color: #2d3047;
 }
 
-.comment-item.negative .comment-score {
-    color: #bc6c25;
-}
+.comment-item.negative .comment-score { color: var(--negative); }
+.comment-item.positive .comment-score { color: var(--positive); }
+.comment-item.neutral  .comment-score { color: var(--neutral);  }
 
 .comment-item:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 6px 20px rgba(212, 163, 115, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.15);
 }
 
-/* Responsive Adjustments */
+/* ============================= */
+/*        Modern Scrollbars      */
+/* ============================= */
+::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 8px;
+}
+
+/* ============================= */
+/*     Responsive Adjustments    */
+/* ============================= */
 @media (max-width: 768px) {
     .comments-column, .ema-column, .stats-column {
         border-radius: 12px;
         padding: 1.5rem;
     }
-    
+
     .sentiment-card {
         padding: 12px;
         height: auto;
     }
 }
+
+
+
