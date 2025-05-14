@@ -518,6 +518,7 @@ footer {
         #5c3d2e 100%  
     );
     color: #ffffff;  
+    color:#4f210a;
     text-align: center;
     padding: 0.5rem 0;
     box-shadow: 0 -4px 20px rgba(45, 48, 71, 0.1);
@@ -547,6 +548,11 @@ h1, h2 {
     font-weight: 600;
     position: relative;
     display: inline-block;
+}
+
+h1{
+    color:  #ad9468;
+    font-weight: 700;
 }
 
 /* remove the decorative underline */
