@@ -425,13 +425,16 @@ footer a:hover {
 
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;500;600&display=swap');
 
 /* Override Colors, Fix Later*/
 
 /*         Base Styling         */
 /* ============================= */
 body {
+    font-family: 'Comic Sans MS', 'Arial Comic', cursive, sans-serif;
     font-family: 'Montserrat', sans-serif;
+    font-family: 'Quicksand', sans-serif;
     background: #f8f9ff;
     color: #2d3047;
     margin: 0;
@@ -496,6 +499,7 @@ footer a:hover {
 } */
 /* warm shades */
 header {
+     font-family: 'Quicksand', sans-serif;
     background: linear-gradient(135deg,
         #f4e9d8 0%,   /* light sandstone */
         #e1c699 100%  /* deeper sandy tan */
@@ -537,7 +541,8 @@ footer a:hover {
 /*    Headings & Underlines      */
 /* ============================= */
 h1, h2 {
-     font-family: 'Playfair Display', serif;
+     /* font-family: 'Playfair Display', serif; */
+     font-family: 'Dancing Script', cursive;
     color: #2d3047;
     font-weight: 600;
     position: relative;
