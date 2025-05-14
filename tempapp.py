@@ -14,8 +14,6 @@ from src.data_aggregator import DataAggregator
 app = Flask(__name__)
 
 # --- Global Variables for Pipeline Components ---
-# We need to make the DataAggregator instance accessible to Flask routes
-# Initializing them as None and setting them up in __main__
 data_source = None
 sentiment_analyzer = None
 data_aggregator = None
@@ -94,7 +92,7 @@ def run_pipeline():
     data_aggregator = DataAggregator(
         input_queue=analyzer_to_aggregator_queue,
         alpha=0.1,
-        max_recent_comments=5
+        max_recent_comments=6
     )
 
     # --- Create Threads ---
@@ -102,11 +100,11 @@ def run_pipeline():
     data_source_thread = threading.Thread(
         target=data_source.start_streaming,
         kwargs={
-            'max_stream_items': 100, # Stream more items for a longer demo
+            'max_stream_items': 15, # Stream more items for a longer demo
             'mindelay': 0.1, # Shorter delays
             'maxdelay': 2
         }
-        # Threads are non-daemon by default, which is good for critical tasks
+
     )
 
     sentiment_analyzer_thread = threading.Thread(
@@ -127,10 +125,6 @@ def run_pipeline():
     sentiment_analyzer_thread.start()
     data_aggregator_thread.start()
 
-    # Note: The main thread will now run the Flask server, not join queues directly here.
-    # The threads will run in the background.
-    # Shutdown will be handled by the sentinel propagation when DataSource finishes.
-
 
 if __name__ == "__main__":
     # Run the pipeline setup in the main thread first
@@ -140,16 +134,9 @@ if __name__ == "__main__":
     print("Open your web browser and go to: http://127.0.0.1:5000/")
 
     # Run the Flask development server in the main thread
-    # debug=True allows for hot-reloading during development
+
     app.run(debug=True)
 
-    # When the Flask server stops (e.g., Ctrl+C), the main thread exits.
-    # Since worker threads are non-daemon, the program will wait for them
-    # to finish gracefully after the server stops and sentinel propagates.
-    # You might still want explicit joins here for a cleaner shutdown
-    # after the server stops, but the sentinel propagation is key.
-
-    # Optional: Add explicit joins here if needed for robust shutdown after server stops
     print("\nFlask server stopped. Waiting for pipeline threads to finish...")
     analyzer_to_aggregator_queue.join()
     raw_to_analyzer_queue.join()
