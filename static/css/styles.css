@@ -1,0 +1,319 @@
+/* General Body and Page Styling */
+body {
+    font-family: 'Comic Sans MS', 'Arial Comic', cursive, sans-serif; /* A more cartoonish font */
+    margin: 0;
+    padding: 0;
+    background-color: #a8dadc; /* Brighter, light teal background */
+    color: #1d3557; /* Dark blue text color */
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column; /* Arrange header, main, footer vertically */
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    /* Removed height: 100vh; to allow flex-grow to manage height */
+    overflow: hidden; /* Hide any overflow on the body */
+}
+
+header {
+    background-color: #457b9d; /* Medium blue header */
+    color: #f1faee; /* Off-white text */
+    padding: 0.5rem 0; /* Further reduced padding */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+    font-size: 0.8rem; /* Further reduced header text size */
+    flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+h1, h2 {
+    color: #1d3557; /* Dark blue heading color */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+}
+
+/* Apply bottom border styling to h2 headings in columns */
+.comments-column h2,
+.ema-column h2,
+.stats-column h2 { /* Apply to stats column heading too */
+    margin-top: 0; /* Ensure no extra top margin */
+    border-bottom: 3px solid #a8dadc; /* Thicker, matching border */
+    padding-bottom: 0.8rem; /* More padding below border from stats */
+    margin-bottom: 1.5rem; /* Add some space below the border */
+}
+
+
+/* Main Container Layout (using Flexbox for 3 columns) */
+.container {
+    display: flex;
+    flex-grow: 1; /* Allow main content to take up available space */
+    padding: 1.5rem; /* Slightly more padding */
+    gap: 30px; /* Increased space between columns */
+    max-width: 1400px; /* Slightly wider container */
+    margin: 0 auto; /* Center the container */
+    flex-wrap: wrap; /* Allow sections to wrap on smaller screens */
+    justify-content: space-between; /* Distribute space between items */
+    /* Removed overflow-y: auto; from container */
+    min-height: 0; /* Added to help flexbox calculate height correctly */
+}
+
+/* Column Styling */
+.comments-column, .ema-column, .stats-column {
+    background-color: #f1faee; /* Off-white background for columns */
+    padding: 2rem; /* More padding */
+    border-radius: 20px; /* Much rounder corners */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Softer, larger shadow */
+    display: flex; /* Use flex for internal layout */
+    flex-direction: column;
+    /* Ensure columns don't shrink below content and handle their own overflow */
+    flex-shrink: 0;
+    min-height: 0; /* Allow flex items to shrink below their content size */
+    overflow-y: auto; /* Add scrollbar to individual columns if content overflows */
+}
+
+.comments-column {
+    flex: 2; /* Increased flex to make comments column wider */
+    min-width: 300px; /* Minimum width before wrapping */
+}
+
+.ema-column {
+    flex: 4; /* Adjusted flex to make EMA column wider */
+    min-width: 250px; /* Minimum width */
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.stats-column {
+    flex: 2; /* Adjusted flex to match comments column */
+    min-width: 200px; /* Minimum width */
+}
+
+
+.sentiment-counts p {
+    margin: 0.8rem 0; /* More space between counts */
+    font-size: 1.2rem; /* Slightly larger font */
+}
+
+/* EMA Semi-Circle Gauge Styling (Inverted) */
+.ema-container {
+    text-align: center;
+    display: flex; /* Center the gauge within its container */
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; /* Allow it to take available space in ema-column */
+    padding-top: 20px; /* Add some space above the gauge */
+}
+
+.semi-circle-gauge {
+    width: 250px; /* Slightly larger gauge */
+    height: 125px; /* Half of the width */
+    margin: 20px auto;
+    border-top-left-radius: 250px; /* Creates the INVERTED semi-circle shape */
+    border-top-right-radius: 250px;
+    background-color: #e0e0e0; /* Lighter grey for unfilled part */
+    position: relative;
+    overflow: hidden; /* Hides the BOTTOM half */
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2); /* More pronounced inner shadow */
+}
+
+.semi-circle-fill {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%; /* Twice the height of the container */
+    transform-origin: center top; /* Rotate from the TOP center for inversion */
+    /* Initial state: 0% fill (pointing LEFT, red) */
+    /* Rotation: -180deg for 0%, 0deg for 100% when pointing up */
+    transform: rotate(-180deg); /* -180deg points left when origin is top */
+    /* Background will be a gradient, updated by JS based on score */
+    /* Flashier Gradient */
+    background: linear-gradient(to right, #e63946, #ffb703, #2a9d8f); /* Red, Bright Yellow/Orange, Teal */
+    /* Mask to make it a semi-circle fill */
+    mask-image: radial-gradient(circle at center top, transparent 125px, black 125px);
+    -webkit-mask-image: radial-gradient(circle at center top, transparent 125px, black 125px);
+}
+
+.ema-score-text {
+    position: absolute;
+    top: 15px; /* Position text slightly lower for inversion */
+    left: 50%;
+    transform: translateX(-50%); /* Center the text */
+    font-size: 1.8rem; /* Larger font size */
+    font-weight: bold;
+    color: #1d3557; /* Dark blue text */
+    z-index: 1; /* Ensure text is above the fill */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* White text shadow for contrast */
+}
+
+
+/* Comments Section Styling */
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Increased space between comments */
+    flex-grow: 1; /* Allow the list to grow within comments-column */
+    /* Removed overflow-y: auto; from comments-list */
+    /* max-height: 600px; /* Removed max-height to let flexbox manage height */
+    padding-right: 10px; /* Add padding for scrollbar */
+}
+
+/* Custom scrollbar for comments list (optional, for cartoonish feel) */
+/* Apply scrollbar styling to the column itself */
+.comments-column::-webkit-scrollbar {
+  width: 12px;
+}
+
+.comments-column::-webkit-scrollbar-track {
+  background: #f1faee; /* Match column background */
+  border-radius: 10px;
+}
+
+.comments-column::-webkit-scrollbar-thumb {
+  background-color: #457b9d; /* Match header blue */
+  border-radius: 10px;
+  border: 3px solid #f1faee; /* Add border matching column background */
+}
+
+
+.comment-item {
+    padding: 1rem; /* Reduced padding */
+    border-radius: 15px; /* Rounder corners */
+    color: #1d3557; /* Dark blue text color */
+    /* Removed position: relative */
+    overflow: hidden; /* Hide anything outside the border-radius */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    transition: transform 0.2s ease-in-out; /* Add a slight hover effect */
+    display: flex; /* Use flexbox for internal layout */
+    align-items: center; /* Vertically center text and score */
+    gap: 10px; /* Space between text and score */
+    height: 80px; /* Reduced fixed height for comment item */
+    flex-shrink: 0; /* Prevent comment items from shrinking */
+}
+
+.comment-item:hover {
+    transform: translateY(-3px); /* Lift slightly on hover */
+}
+
+
+/* Sentiment Background Colors */
+.comment-item.positive {
+    background-color: #90be6d; /* Vibrant green */
+    border-left: 8px solid #43aa8b; /* Darker green border */
+}
+
+.comment-item.neutral {
+    background-color: #f9c74f; /* Bright yellow/orange */
+    border-left: 8px solid #f8961e; /* Darker orange border */
+}
+
+.comment-item.negative {
+    background-color: #f94144; /* Vibrant red */
+    border-left: 8px solid #d00000; /* Darker red border */
+    color: #f1faee; /* White text for readability on dark red */
+}
+
+.comment-item.negative .comment-text {
+     border-bottom-color: #f1faee; /* White border for readability */
+}
+
+
+.comment-text {
+    margin: 0; /* Removed margin */
+    padding-bottom: 0; /* Removed padding */
+    border-bottom: none; /* Removed border */
+    flex-grow: 1; /* Allow text to take up available space */
+    overflow: hidden; /* Hide overflowing text */
+    display: -webkit-box; /* For clipping text */
+    -webkit-line-clamp: 3; /* Reduced text to 3 lines */
+    -webkit-box-orient: vertical;
+    white-space: normal; /* Allow text to wrap */
+}
+
+.comment-score {
+    /* Removed absolute positioning */
+    flex-shrink: 0; /* Prevent score from shrinking */
+    font-size: 1.4rem; /* Larger font size */
+    font-weight: bold;
+    color: #1d3557; /* Dark blue color for score */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* White text shadow */
+    padding-left: 10px; /* Add space to the left of the score */
+    border-left: 1px solid #ccc; /* Optional: Add a separator line */
+}
+
+
+/* Footer Styling */
+footer {
+    margin-top: auto; /* Push footer to the bottom */
+    background-color: #457b9d; /* Match header blue */
+    color: #f1faee; /* Match header text color */
+    text-align: center;
+    padding: 0.5rem 0; /* Further reduced padding */
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+    font-size: 0.7rem; /* Further reduced font size */
+    flex-shrink: 0; /* Prevent footer from shrinking */
+}
+
+footer a {
+    color: #a8dadc; /* Teal link color */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Adjustments (Basic) */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack sections vertically on smaller screens */
+        padding: 0.8rem; /* Adjusted padding */
+        gap: 20px; /* Adjusted gap */
+        overflow-y: visible; /* Allow body scroll if needed when stacked */
+    }
+
+    /* Make columns take full width when stacked */
+    .comments-column, .ema-column, .stats-column {
+        flex: none; /* Remove flex-grow */
+        width: 100%; /* Take full width */
+        min-width: auto; /* Remove min-width constraint */
+        padding: 1.5rem; /* Adjusted padding */
+        border-radius: 15px; /* Slightly smaller radius when stacked */
+        min-height: auto; /* Remove min-height constraint */
+        overflow-y: auto; /* Ensure columns are scrollable when stacked */
+    }
+
+    /* Adjust EMA gauge size on small screens */
+    .semi-circle-gauge {
+        width: 200px; /* Adjusted size */
+        height: 100px;
+        border-top-left-radius: 200px;
+        border-top-right-radius: 200px;
+        mask-image: radial-gradient(circle at center top, transparent 100px, black 100px);
+        -webkit-mask-image: radial-gradient(circle at center top, transparent 100px, black 100px);
+    }
+
+     .semi-circle-fill {
+         mask-image: radial-gradient(circle at center top, transparent 100px, black 100px);
+         -webkit-mask-image: radial-gradient(circle at center top, transparent 100px, black 100px);
+     }
+
+    .ema-score-text {
+        font-size: 1.5rem;
+        top: 10px;
+    }
+
+    .comment-item {
+        padding: 0.8rem; /* Further reduced padding */
+        border-radius: 10px; /* Adjusted radius */
+        height: 60px; /* Further reduced fixed height */
+    }
+
+    .comment-score {
+        font-size: 1.1rem; /* Slightly smaller font */
+        padding-left: 6px; /* Adjusted padding */
+    }
+
+    .comments-list {
+        max-height: 300px; /* Adjusted max height */
+    }
+}
