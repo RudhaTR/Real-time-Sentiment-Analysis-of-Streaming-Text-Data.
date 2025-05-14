@@ -424,12 +424,14 @@ footer a:hover {
 }
 
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap');
+
 /* Override Colors, Fix Later*/
 
 /*         Base Styling         */
 /* ============================= */
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background: #f8f9ff;
     color: #2d3047;
     margin: 0;
@@ -535,6 +537,7 @@ footer a:hover {
 /*    Headings & Underlines      */
 /* ============================= */
 h1, h2 {
+     font-family: 'Playfair Display', serif;
     color: #2d3047;
     font-weight: 600;
     position: relative;
