@@ -429,12 +429,15 @@ footer a:hover {
 /* Modern Color Scheme Updates - Brownish/Grayish Theme */
 
 /* General Body and Page Styling */
+/* Modern Color Scheme Updates - Brownish/Yellow Theme */
+
+/* General Body and Page Styling */
 body {
-    font-family: 'Segoe UI', 'Roboto', sans-serif; /* More modern font */
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    background-color: #f8f9fa;
+    color: #2b2d42;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f4; /* Light stone/gray background */
-    color: #292524; /* Dark brown text */
     line-height: 1.6;
     display: flex;
     flex-direction: column;
@@ -444,19 +447,19 @@ body {
 }
 
 header {
-    background: linear-gradient(90deg, #44403c 0%, #292524 100%); /* Brown/gray gradient */
-    color: #f5f5f4;
+    background: linear-gradient(135deg, #6f4e37 0%, #d4a373 100%);
+    color: #fffcf8;
     padding: 0.75rem 0;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 20px rgba(111, 78, 55, 0.15);
     font-size: 0.9rem;
     flex-shrink: 0;
 }
 
 h1, h2 {
-    color: #57534e; /* Warm gray heading color */
-    text-shadow: none; /* Remove text shadow for cleaner look */
+    color: #6f4e37;
     font-weight: 600;
+    text-shadow: none;
 }
 
 /* Column header styling */
@@ -464,119 +467,137 @@ h1, h2 {
 .ema-column h2,
 .stats-column h2 {
     margin-top: 0;
-    border-bottom: 2px solid #78716c; /* Stone border */
+    border-bottom: 2px solid #e7c6a6;
     padding-bottom: 0.8rem;
     margin-bottom: 1.5rem;
     flex-shrink: 0;
-    color: #44403c;
+    color: #6f4e37;
 }
 
-/* Column Styling - Updated backgrounds */
+/* Column Styling */
 .comments-column, .ema-column, .stats-column {
-    background-color: #faf8f6; /* Very light beige background */
+    background-color: #fffcf8;
     padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Softer shadow */
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(212, 163, 115, 0.1);
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
     min-height: 0;
+    border: 1px solid #ede0d4;
 }
 
 /* Footer Styling */
 footer {
     margin-top: auto;
-    background: linear-gradient(90deg, #44403c 0%, #292524 100%); /* Match header gradient */
-    color: #f5f5f4;
+    background: linear-gradient(135deg, #6f4e37 0%, #d4a373 100%);
+    color: #fffcf8;
     text-align: center;
     padding: 0.5rem 0;
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 -4px 20px rgba(111, 78, 55, 0.15);
     font-size: 0.7rem;
     flex-shrink: 0;
 }
 
 footer a {
-    color: #d6d3d1; /* Light stone link color */
+    color: #e7c6a6;
     text-decoration: none;
     font-weight: bold;
 }
 
 footer a:hover {
     text-decoration: underline;
-    color: #ffffff;
+    color: #fffcf8;
 }
 
-/* Update container background */
-.container {
-    background-color: #f5f5f4; /* Match body background */
-}
-
-/* Update EMA gauge colors - Keep vibrant for contrast */
+/* EMA Gauge */
 .semi-circle-fill {
     background: linear-gradient(to right, 
-        #dc2626 0%, /* Deep red */
-        #ea580c 20%, /* Burnt orange */
-        #eab308 40%, /* Amber */
-        #84cc16 60%, /* Lime */
-        #22c55e 80%, /* Green */
-        #15803d 100% /* Forest green */
+        #d4a373 0%,       /* Warm yellow-brown */
+        #e9c46a 33%,      /* Golden yellow */
+        #ffd166 66%,      /* Bright yellow */
+        #f4a261 100%     /* Orange-brown */
     );
 }
 
-/* Update sentiment card colors */
+/* Sentiment Cards */
+.sentiment-card {
+    background-color: rgba(255, 252, 248, 0.9) !important;
+    border-left: 5px solid;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .sentiment-card.positive {
-    background-color: rgba(132, 204, 22, 0.1); /* Light lime background */
-    border-left: 4px solid #22c55e; /* Green border */
+    border-color: #90be6d;
 }
 
 .sentiment-card.neutral {
-    background-color: rgba(234, 179, 8, 0.1); /* Light amber background */
-    border-left: 4px solid #ea580c; /* Burnt orange border */
+    border-color: #e9c46a;
 }
 
 .sentiment-card.negative {
-    background-color: rgba(220, 38, 38, 0.1); /* Light red background */
-    border-left: 4px solid #dc2626; /* Deep red border */
+    border-color: #d4a373;
 }
 
 .sentiment-card.positive .sentiment-value {
-    color: #15803d; /* Forest green text */
+    color: #588157;
 }
 
 .sentiment-card.neutral .sentiment-value {
-    color: #d97706; /* Amber text */
+    color: #e9c46a;
 }
 
 .sentiment-card.negative .sentiment-value {
-    color: #b91c1c; /* Darker red text */
+    color: #bc6c25;
 }
 
-/* Update total processed style */
+/* Total Processed */
 .total-processed-container {
-    border: 1px solid #78716c; /* Stone border */
+    border: 1px solid #e7c6a6;
 }
 
 #total-processed {
-    color: #44403c; /* Brown text */
+    color: #6f4e37;
 }
 
-/* Update comment item colors */
+/* Comment Items */
+.comment-item {
+    background-color: #fffcf8 !important;
+    border-left: 6px solid;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .comment-item.positive {
-    background-color: #f0fdf4; /* Very light green */
-    border-left: 8px solid #22c55e; /* Green border */
+    border-color: #90be6d;
 }
 
 .comment-item.neutral {
-    background-color: #fefce8; /* Very light amber */
-    border-left: 8px solid #ea580c; /* Burnt orange border */
+    border-color: #e9c46a;
 }
 
 .comment-item.negative {
-    background-color: #fef2f2; /* Very light red */
-    border-left: 8px solid #dc2626; /* Deep red border */
-    color: #292524; /* Dark text for better readability */
+    border-color: #d4a373;
+    color: #2b2d42;
 }
 
 .comment-item.negative .comment-score {
-    color: #b91c1c; /* Darker red score for negative comments */
+    color: #bc6c25;
+}
+
+.comment-item:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(212, 163, 115, 0.15);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .comments-column, .ema-column, .stats-column {
+        border-radius: 12px;
+        padding: 1.5rem;
+    }
+    
+    .sentiment-card {
+        padding: 12px;
+        height: auto;
+    }
 }
