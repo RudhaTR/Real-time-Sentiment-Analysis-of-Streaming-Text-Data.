@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Stream Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    </head>
+<body>
+
+    <header>
+        <h1>Real-time Stream Sentiment Analyzer</h1>
+    </header>
+
+    <main class="container">
+        <section class="comments-column">
+            <h2>Recent Comments</h2>
+            <div id="recent-comments-list" class="comments-list">
+                </div>
+        </section>
+
+        <section class="ema-column">
+             <h2>Overall Sentiment Trend (EMA)</h2>
+             <div class="ema-container">
+                <div class="semi-circle-gauge">
+                    <div class="semi-circle-fill"></div>
+                    <div class="ema-score-text">0</div>
+                </div>
+            </div>
+        </section>
+
+
+        <aside class="stats-column">
+            <h2>Pipeline Stats</h2>
+            <p>Total Processed: <span id="total-processed">0</span></p>
+            <div class="sentiment-counts">
+                <p>Positive: <span id="pos-count">0</span></p>
+                <p>Neutral: <span id="neu-count">0</span></p>
+                <p>Negative: <span id="neg-count">0</span></p>
+            </div>
+            </aside>
+    </main>
+
+    <footer>
+        <p>&copy; [Anirudh D Bhat] - <a href="[https://github.com/RudhaTR/Real-time-Sentiment-Analysis-of-Streaming-Text-Data.]" target="_blank">GitHub</a></p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
