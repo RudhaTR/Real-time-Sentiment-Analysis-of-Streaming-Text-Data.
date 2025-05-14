@@ -603,9 +603,9 @@ h2::after {
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.sentiment-card.positive { border-color: var(--positive); }
-.sentiment-card.neutral  { border-color: var(--neutral);  }
-.sentiment-card.negative { border-color: var(--negative); }
+.sentiment-card.positive { border-color: var(--positive); font-family: 'Comic Sans MS', 'Arial Comic', cursive, sans-serif;}
+.sentiment-card.neutral  { border-color: var(--neutral); font-family: 'Comic Sans MS', 'Arial Comic', cursive, sans-serif; }
+.sentiment-card.negative { border-color: var(--negative);font-family: 'Comic Sans MS', 'Arial Comic', cursive, sans-serif; }
 
 .sentiment-card.positive .sentiment-value { color: var(--positive); }
 .sentiment-card.neutral  .sentiment-value { color: var(--neutral);  }
@@ -615,6 +615,7 @@ h2::after {
 /*      Total Processed Box      */
 /* ============================= */
 .total-processed-container {
+    font-family: 'Comic Sans MS', 'Arial Comic', cursive, sans-serif;
     border: 1px solid #f0f1f5;
 }
 
@@ -628,6 +629,7 @@ h2::after {
 /*         Comment Items         */
 /* ============================= */
 .comment-item {
+    font-family: 'Comic Sans MS', 'Arial Comic', cursive, sans-serif;
     background-color: #ffffff !important;
     border-left: 6px solid;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
