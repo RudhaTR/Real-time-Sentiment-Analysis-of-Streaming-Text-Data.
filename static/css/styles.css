@@ -517,8 +517,13 @@ footer {
         #8b6b4f 0%,   
         #5c3d2e 100%  
     );
+
+     background: linear-gradient(135deg,
+         #966a29 0%,   
+        #604517 100%    
+    );
     color: #ffffff;  
-    color:#4f210a;
+    color:#422b02;
     text-align: center;
     padding: 0.5rem 0;
     box-shadow: 0 -4px 20px rgba(45, 48, 71, 0.1);
@@ -660,8 +665,9 @@ h2::after {
 /* ============================= */
 /*        Modern Scrollbars      */
 /* ============================= */
-::-webkit-scrollbar-thumb {
-    background: var(--accent);
+.comments-list::-webkit-scrollbar-thumb {
+  background-color: #457b9d; 
+  background-color: #e1c699;
     border-radius: 8px;
 }
 
