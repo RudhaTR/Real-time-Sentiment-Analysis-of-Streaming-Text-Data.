@@ -30,15 +30,31 @@
         </section>
 
 
-        <aside class="stats-column">
+       <aside class="stats-column">
             <h2>Pipeline Stats</h2>
-            <p>Total Processed: <span id="total-processed">0</span></p>
-            <div class="sentiment-counts">
-                <p>Positive: <span id="pos-count">0</span></p>
-                <p>Neutral: <span id="neu-count">0</span></p>
-                <p>Negative: <span id="neg-count">0</span></p>
+            
+            <div class="total-processed-container">
+                <p>Total Processed</p>
+                <span id="total-processed">0</span>
             </div>
-            </aside>
+            
+            <div class="sentiment-counts">
+                <div class="sentiment-card positive">
+                    <span class="sentiment-label">Positive</span>
+                    <span id="pos-count" class="sentiment-value">0</span>
+                </div>
+                
+                <div class="sentiment-card neutral">
+                    <span class="sentiment-label">Neutral</span>
+                    <span id="neu-count" class="sentiment-value">0</span>
+                </div>
+                
+                <div class="sentiment-card negative">
+                    <span class="sentiment-label">Negative</span>
+                    <span id="neg-count" class="sentiment-value">0</span>
+                </div>
+            </div>
+        </aside>
     </main>
 
     <footer>

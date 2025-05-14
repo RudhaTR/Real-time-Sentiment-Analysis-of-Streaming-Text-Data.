@@ -74,7 +74,7 @@ h1, h2 {
     justify-content: center;
     overflow-y: auto;
 }
-
+/* 
 .stats-column {
     flex: 2;
     min-width: 200px;
@@ -84,6 +84,108 @@ h1, h2 {
 .sentiment-counts p {
     margin: 0.8rem 0;
     font-size: 1.2rem;
+} */
+
+/* Stats Column Styling Enhancement */
+.stats-column {
+    flex: 2;
+    min-width: 200px;
+    overflow-y: auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Total processed count styling */
+.total-processed-container {
+    background-color: #f1faee;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    border: 1px solid #457b9d;
+    margin-bottom: 5px;
+}
+
+.total-processed-container p {
+    font-size: 0.9rem;
+    margin: 0;
+    color: #1d3557;
+    font-weight: bold;
+}
+
+#total-processed {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #457b9d;
+    display: block;
+    margin-top: 3px;
+    font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
+}
+
+/* Sentiment counts container */
+.sentiment-counts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+/* Common styles for sentiment count cards */
+.sentiment-card {
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+    height: 40px; /* Fixed height to ensure consistent sizing */
+}
+
+.sentiment-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Specific sentiment card styles */
+.sentiment-card.positive {
+    background-color: rgba(144, 190, 109, 0.15);
+    border-left: 4px solid #90be6d;
+}
+
+.sentiment-card.neutral {
+    background-color: rgba(249, 199, 79, 0.15);
+    border-left: 4px solid #f9c74f;
+}
+
+.sentiment-card.negative {
+    background-color: rgba(249, 65, 68, 0.15);
+    border-left: 4px solid #f94144;
+}
+
+.sentiment-label {
+    font-weight: bold;
+    color: #1d3557;
+    font-size: 0.95rem;
+}
+
+.sentiment-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
+}
+
+.sentiment-card.positive .sentiment-value {
+    color: #43aa8b;
+}
+
+.sentiment-card.neutral .sentiment-value {
+    color: #f8961e;
+}
+
+.sentiment-card.negative .sentiment-value {
+    color: #e63946;
 }
 
 .ema-container {
@@ -257,6 +359,18 @@ footer a:hover {
 }
 
 @media (max-width: 768px) {
+    .sentiment-card {
+        padding: 12px;
+    }
+    
+    .sentiment-value {
+        font-size: 1.5rem;
+    }
+    
+    #total-processed {
+        font-size: 1.8rem;
+    }
+
     .container {
         flex-direction: column;
         padding: 0.8rem;
